@@ -1,0 +1,70 @@
+
+Bearly Hired — Project Summary
+
+Bearly Hired is a professional social network built live, in public, using AI. It’s like LinkedIn — if LinkedIn took itself way less seriously and was built for actual humans, not "thought leaders."
+
+Project Overview
+----------------
+A professional network that:
+- Centers authenticity over performance
+- Balances wit with usefulness
+- Supports posting (text, image, video, polls), profiles, messaging, job listings, and newsletters
+- Is fully open source
+- Is built live on Twitch with full transparency
+- Has strong overlap with the creator’s existing brand, Bearly Fit
+
+Audience
+--------
+- Professionals who are burnt out on hustle culture
+- People who hate performative LinkedIn posts
+- Folks navigating modern work in a deeply unserious world
+- Human beings > influencers
+- Open source and dev-first communities welcome
+
+The Problem We're Solving
+--------------------------
+LinkedIn is bloated with ego, cringe, and content that makes people feel gross.
+Bearly Hired is a response to that — a place to be real, to share, and to connect without needing to “build a personal brand.”
+
+- No corporate fakery
+- No “influencer” energy
+- No hustle worship
+- Just people sharing what they're doing, making, or struggling with
+
+Tone & Voice
+------------
+- Witty but not silly
+- Cynically hopeful
+- Burnout-aware
+- Casually professional
+- Emotionally employed
+
+Sample taglines:
+- "Professional. Barely."
+- "Networking for the emotionally employed."
+- "Just trying to make it to lunch."
+
+Brand & Design
+--------------
+- Logo: A hungover cartoon bear at a desk with coffee and a laptop
+- Font: Work Sans (clean, modern, slightly informal)
+- Color Palette:
+  - Deep Bear Brown (#402E32)
+  - Honey Yellow (#FFBE5C)
+  - Soft Paper Off-White (#F8F4F1)
+  - Muted Pink-Red (#C7535B)
+  - Muted Blue (#6A8EAE)
+- Visual Tone: Flat cartoon, minimalist, warm humor
+
+Technical / Structure
+---------------------
+- Open source on GitHub
+- Core features to include:
+  - User & business profiles
+  - Posts with comments and reactions
+  - Job board with apply/posting features
+  - Newsletters
+  - Private messaging
+  - Follow/connect/block
+  - Notifications
+  - Account settings
