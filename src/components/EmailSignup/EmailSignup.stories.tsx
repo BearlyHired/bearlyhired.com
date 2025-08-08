@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { EmailSignup } from './EmailSignup';
 
 const meta: Meta<typeof EmailSignup> = {
@@ -19,16 +18,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onSubmit: action('onSubmit'),
+    onSubmit: (email: string) => console.log('Email submitted:', email),
   },
 };
 
 export const WithCustomAction: Story = {
   args: {
-    onSubmit: (email: string) => {
-      action('onSubmit')(email);
-      alert(`Email submitted: ${email}`);
-    },
+    onSubmit: (email: string) => console.log('Email submitted:', email),
   },
   parameters: {
     docs: {

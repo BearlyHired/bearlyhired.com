@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { WelcomePage } from './WelcomePage';
 
 const meta: Meta<typeof WelcomePage> = {
@@ -21,26 +20,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onJoinWaitlist: action('onJoinWaitlist'),
-    onLearnMore: action('onLearnMore'),
-    onEmailSubmit: action('onEmailSubmit'),
+    onJoinWaitlist: () => console.log('Join waitlist clicked'),
+    onLearnMore: () => console.log('Learn more clicked'),
+    onEmailSubmit: (email: string) => console.log('Email submitted:', email),
   },
 };
 
 export const WithCustomHandlers: Story = {
   args: {
-    onJoinWaitlist: () => {
-      action('onJoinWaitlist')();
-      alert('Joining waitlist!');
-    },
-    onLearnMore: () => {
-      action('onLearnMore')();
-      alert('Learning more about Bearly Hired!');
-    },
-    onEmailSubmit: (email: string) => {
-      action('onEmailSubmit')(email);
-      alert(`Email submitted: ${email}`);
-    },
+    onJoinWaitlist: () => console.log('Join waitlist clicked'),
+    onLearnMore: () => console.log('Learn more clicked'),
+    onEmailSubmit: (email: string) => console.log('Email submitted:', email),
   },
   parameters: {
     docs: {

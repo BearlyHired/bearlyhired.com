@@ -7,7 +7,10 @@
       "Bash(find:*)",
       "WebFetch(domain:www.figma.com)",
       "Bash(npm test:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 5 npm run dev)",
+      "Bash(true)"
     ],
     "deny": []
   }

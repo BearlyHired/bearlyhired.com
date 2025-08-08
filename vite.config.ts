@@ -25,9 +25,9 @@ export default defineConfig({
     projects: [
       // Regular component tests
       {
-        name: 'unit',
         extends: true,
         test: {
+          name: 'unit',
           include: ['src/**/*.test.{ts,tsx}'],
           environment: 'jsdom',
           setupFiles: ['./src/test/setup.ts'],
