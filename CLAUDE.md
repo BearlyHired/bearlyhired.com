@@ -1346,8 +1346,376 @@ const processOrder = (order: Order) => {
 - [Kent C. Dodds Testing JavaScript](https://testingjavascript.com/)
 - [Functional Programming in TypeScript](https://gcanti.github.io/fp-ts/)
 
+## Vite + React-TS Component Development
+
+### Component Creation Requirements
+
+**EVERY React component MUST have:**
+
+1. **Unit tests** - Testing component behavior and user interactions
+2. **Storybook stories** - Documenting all props and component variations
+
+This is non-negotiable. Components without both tests and stories should not be considered complete.
+
+### Project Structure
+
+```
+src/
+  components/          # Pure, reusable components only
+    Button/
+      Button.tsx
+      Button.test.tsx
+      Button.stories.tsx
+      index.ts
+    Card/
+      Card.tsx
+      Card.test.tsx
+      Card.stories.tsx
+      index.ts
+  features/           # Feature-specific logic and components
+    payment/
+      components/
+        PaymentForm/
+          PaymentForm.tsx
+          PaymentForm.test.tsx
+          PaymentForm.stories.tsx
+          index.ts
+      hooks/
+        usePaymentValidation.ts
+        usePaymentValidation.test.ts
+      services/
+        paymentApi.ts
+        paymentApi.test.ts
+      types/
+        payment.types.ts
+      index.ts
+  routes/             # Route definitions and routing logic
+    PaymentRoute.tsx
+    DashboardRoute.tsx
+    routes.tsx
+  hooks/              # Global/shared hooks
+    useLocalStorage.ts
+    useApi.ts
+  context/            # React context providers
+    AuthContext.tsx
+    ThemeContext.tsx
+  assets/             # Static assets
+    images/
+    icons/
+    styles/
+  i18n/               # Internationalization
+    translations/
+    i18n.config.ts
+  services/           # Global API services
+    api.ts
+    httpClient.ts
+  store/              # Global state management
+    authStore.ts
+    uiStore.ts
+```
+
+### Feature Development Pattern
+
+Features should be self-contained with their own components, hooks, services, and types:
+
+```typescript
+// features/payment/components/PaymentForm/PaymentForm.tsx
+import { usePaymentValidation } from '../../hooks/usePaymentValidation';
+import { type PaymentFormData } from '../../types/payment.types';
+
+export const PaymentForm = ({onSubmit}: PaymentFormProps) => {
+  const {validate, errors} = usePaymentValidation();
+
+  // Component implementation
+};
+```
+
+### Storybook Stories Pattern
+
+Every story must demonstrate **all props** and their variations:
+
+```typescript
+// components/Button/Button.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from './Button';
+
+const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
+  component: Button,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    onClick: {action: 'clicked'},
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'danger']
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large']
+    },
+    disabled: {control: 'boolean'},
+    loading: {control: 'boolean'},
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: 'Click me',
+    variant: 'primary',
+    size: 'medium',
+    disabled: false,
+    loading: false,
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    ...Default.args,
+    variant: 'secondary',
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    ...Default.args,
+    loading: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+```
+
+### Component Testing Pattern
+
+```typescript
+// components/Button/Button.test.tsx
+import { render, screen } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import { Button, type ButtonProps } from './Button';
+
+const getMockButtonProps = (
+  overrides?: Partial<ButtonProps>
+): ButtonProps => ({
+  onClick: jest.fn(),
+  variant: 'primary',
+  size: 'medium',
+  disabled: false,
+  loading: false,
+  children: 'Test Button',
+  ...overrides,
+});
+
+describe('Button', () => {
+  it('should render with correct text', () => {
+    const props = getMockButtonProps({children: 'Click me'});
+    render(<Button {...props}
+    />);
+
+    expect(screen.getByRole('button', {name: 'Click me'})).toBeInTheDocument();
+  });
+
+  it('should call onClick when clicked', async () => {
+    const user = userEvent.setup();
+    const mockOnClick = jest.fn();
+    const props = getMockButtonProps({onClick: mockOnClick});
+
+    render(<Button {...props}
+    />);
+
+    await user.click(screen.getByRole('button'));
+    expect(mockOnClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('should be disabled when disabled prop is true', () => {
+    const props = getMockButtonProps({disabled: true});
+    render(<Button {...props}
+    />);
+
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+  });
+
+  it('should not call onClick when disabled', async () => {
+    const user = userEvent.setup();
+    const mockOnClick = jest.fn();
+    const props = getMockButtonProps({onClick: mockOnClick, disabled: true});
+
+    render(<Button {...props}
+    />);
+
+    await user.click(screen.getByRole('button'));
+    expect(mockOnClick).not.toHaveBeenCalled();
+  });
+});
+```
+
+### Feature Component Testing
+
+```typescript
+// features/payment/components/PaymentForm/PaymentForm.test.tsx
+import { render, screen } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import { PaymentForm } from './PaymentForm';
+
+describe('PaymentForm', () => {
+  it('should submit payment with valid data', async () => {
+    const user = userEvent.setup();
+    const mockOnSubmit = jest.fn();
+
+    render(<PaymentForm onSubmit = {mockOnSubmit}
+    />);
+
+    const amountInput = screen.getByLabelText('Amount');
+    const submitButton = screen.getByRole('button', {name: 'Submit Payment'});
+
+    await user.type(amountInput, '250');
+    await user.click(submitButton);
+
+    expect(mockOnSubmit).toHaveBeenCalledWith({
+      amount: 250,
+      currency: 'GBP',
+    });
+  });
+
+  it('should show validation errors for invalid amounts', async () => {
+    const user = userEvent.setup();
+    const mockOnSubmit = jest.fn();
+
+    render(<PaymentForm onSubmit = {mockOnSubmit}
+    />);
+
+    const amountInput = screen.getByLabelText('Amount');
+    const submitButton = screen.getByRole('button', {name: 'Submit Payment'});
+
+    await user.type(amountInput, '-100');
+    await user.click(submitButton);
+
+    expect(screen.getByText('Amount must be positive')).toBeInTheDocument();
+    expect(mockOnSubmit).not.toHaveBeenCalled();
+  });
+});
+```
+
+### Route Component Pattern
+
+Routes should be simple and delegate to features:
+
+```typescript
+// routes/PaymentRoute.tsx
+import { PaymentForm } from '../features/payment/components/PaymentForm';
+import { usePaymentSubmission } from '../features/payment/hooks/usePaymentSubmission';
+
+export const PaymentRoute = () => {
+  const {submitPayment, isLoading} = usePaymentSubmission();
+
+  return (
+    <div className = "payment-page" >
+      <h1>Make
+  Payment < /h1>
+  < PaymentForm
+  onSubmit = {submitPayment}
+  isLoading = {isLoading}
+  />
+  < /div>
+)
+  ;
+};
+```
+
+### Component Development Workflow
+
+1. **Start with failing test** (TDD):
+   ```typescript
+   it('should render button with correct variant class', () => {
+     render(<Button variant="primary">Click me</Button>);
+     expect(screen.getByRole('button')).toHaveClass('btn-primary');
+   });
+   ```
+
+2. **Create minimal component to pass test**
+
+3. **Create basic story**
+
+4. **Add next test** → **Implement** → **Add story variation** → **Refactor if needed**
+
+### Storybook Organization
+
+```typescript
+// Pure components
+'Components/Button'
+'Components/Card'
+'Components/Input'
+
+// Feature components
+'Features/Payment/PaymentForm'
+'Features/Auth/LoginForm'
+'Features/Dashboard/MetricsCard'
+
+// Route components (if complex enough to warrant stories)
+'Routes/PaymentRoute'
+```
+
+### Testing Best Practices
+
+- **Test user behavior, not implementation details**
+- **Use React Testing Library queries in preference order**:
+    1. `getByRole` (most accessible)
+    2. `getByLabelText` (forms)
+    3. `getByText` (content)
+    4. `getByTestId` (last resort)
+
+- **For pure components: Test all prop variations**
+- **For feature components: Test business logic and user interactions**
+- **For routes: Test integration between features**
+
+### Import Patterns
+
+```typescript
+// Pure component imports
+import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
+
+// Feature imports
+import { PaymentForm } from '@/features/payment/components/PaymentForm';
+import { usePaymentValidation } from '@/features/payment/hooks/usePaymentValidation';
+import { type PaymentData } from '@/features/payment/types/payment.types';
+
+// Global imports
+import { useApi } from '@/hooks/useApi';
+import { AuthContext } from '@/context/AuthContext';
+import { apiClient } from '@/services/api';
+```
+
+### Required Tools Setup
+
+```json
+// package.json
+{
+  "devDependencies": {
+    "@storybook/react": "^7.x.x",
+    "@testing-library/react": "^13.x.x",
+    "@testing-library/user-event": "^14.x.x",
+    "@testing-library/jest-dom": "^5.x.x"
+  }
+}
+```
+
 ## Summary
 
 The key is to write clean, testable, functional code that evolves through small, safe increments. Every change should be driven by a test
 that describes the desired behavior, and the implementation should be the simplest thing that makes that test pass. When in doubt, favor
 simplicity and readability over cleverness.
+
+**For React components: No component is complete without both comprehensive unit tests AND complete Storybook stories documenting all props
+and variations.**
