@@ -1,4 +1,5 @@
 import { useTranslation } from '@/hooks/useTranslation';
+import bearHead from '@/assets/images/bearHead.png';
 import './Features.css';
 
 export type FeaturesProps = {
@@ -17,7 +18,11 @@ export const Features = ({}: FeaturesProps) => {
         <ul className="features-grid">
           <li className="feature-card">
             <div className="feature-icon">
-              {/* Icon placeholder */}
+              <img 
+                src={bearHead} 
+                alt="Bear head icon representing no corporate fakery"
+                className="feature-icon-image"
+              />
             </div>
             <h3 className="feature-title">
               {t('features.welcome.features.cards.corporate.title')}
@@ -28,7 +33,11 @@ export const Features = ({}: FeaturesProps) => {
           </li>
           <li className="feature-card">
             <div className="feature-icon">
-              {/* Icon placeholder */}
+              <img 
+                src={bearHead} 
+                alt="Bear head icon representing making it to lunch"
+                className="feature-icon-image"
+              />
             </div>
             <h3 className="feature-title">
               {t('features.welcome.features.cards.lunch.title')}
@@ -39,7 +48,11 @@ export const Features = ({}: FeaturesProps) => {
           </li>
           <li className="feature-card">
             <div className="feature-icon">
-              {/* Icon placeholder */}
+              <img 
+                src={bearHead} 
+                alt="Bear head icon representing building in public"
+                className="feature-icon-image"
+              />
             </div>
             <h3 className="feature-title">
               {t('features.welcome.features.cards.public.title')}
