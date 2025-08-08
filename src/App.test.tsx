@@ -3,22 +3,25 @@ import { userEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
 import App from './App';
 
-// Mock window.alert, window.open, and console.log
+// Mock window.alert and window.location
 const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
-const windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
-const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+
+// Mock window.location.href
+Object.defineProperty(window, 'location', {
+  value: {
+    href: '',
+  },
+  writable: true,
+});
 
 describe('App', () => {
   beforeEach(() => {
     alertSpy.mockClear();
-    windowOpenSpy.mockClear();
-    consoleSpy.mockClear();
+    window.location.href = '';
   });
 
   afterAll(() => {
     alertSpy.mockRestore();
-    windowOpenSpy.mockRestore();
-    consoleSpy.mockRestore();
   });
 
   it('should render the WelcomePage', () => {
@@ -49,7 +52,7 @@ describe('App', () => {
     const learnMoreButton = screen.getByRole('button', { name: 'features.welcome.hero.learnMore' });
     await user.click(learnMoreButton);
     
-    expect(windowOpenSpy).toHaveBeenCalledWith('https://www.linkedin.com/company/bearly-hired/', '_blank', 'noopener,noreferrer');
+    expect(window.location.href).toBe('https://www.linkedin.com/company/bearly-hired/');
   });
 
   it('should handle email submissions', async () => {

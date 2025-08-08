@@ -7,7 +7,7 @@ function App() {
   };
 
   const handleLearnMore = () => {
-    window.open('https://www.linkedin.com/company/bearly-hired/', '_blank', 'noopener,noreferrer');
+    window.location.href = 'https://www.linkedin.com/company/bearly-hired/';
   };
 
   const handleEmailSubmit = (_email: string) => {
