@@ -1,0 +1,9 @@
+.welcome-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-page main {
+  flex: 1;
+}

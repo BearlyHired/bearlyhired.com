@@ -23,6 +23,18 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     globals: true,
     projects: [
+      // Regular component tests
+      {
+        name: 'unit',
+        extends: true,
+        test: {
+          include: ['src/**/*.test.{ts,tsx}'],
+          environment: 'jsdom',
+          setupFiles: ['./src/test/setup.ts'],
+          globals: true,
+        },
+      },
+      // Storybook tests  
       {
         extends: true,
         plugins: [
