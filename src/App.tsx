@@ -3,18 +3,15 @@ import './App.css';
 
 function App() {
   const handleJoinWaitlist = () => {
-    console.log('Join waitlist clicked!');
-    // TODO: Implement waitlist signup logic
+    alert('hahahha just joking there is not waitlist');
   };
 
   const handleLearnMore = () => {
-    console.log('Learn more clicked!');
-    // TODO: Implement learn more navigation
+    window.open('https://www.linkedin.com/company/bearly-hired/', '_blank', 'noopener,noreferrer');
   };
 
-  const handleEmailSubmit = (email: string) => {
-    console.log('Email submitted:', email);
-    // TODO: Implement email submission logic
+  const handleEmailSubmit = (_email: string) => {
+    alert('hahahha just joking there is not waitlist');
   };
 
   return (

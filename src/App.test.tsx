@@ -3,23 +3,29 @@ import { userEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
 import App from './App';
 
-// Mock console.log to verify event handlers are called
+// Mock window.alert, window.open, and console.log
+const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
+const windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
 describe('App', () => {
   beforeEach(() => {
+    alertSpy.mockClear();
+    windowOpenSpy.mockClear();
     consoleSpy.mockClear();
   });
 
   afterAll(() => {
+    alertSpy.mockRestore();
+    windowOpenSpy.mockRestore();
     consoleSpy.mockRestore();
   });
 
   it('should render the WelcomePage', () => {
     render(<App />);
     
-    // Check that main sections are rendered
-    expect(screen.getByText('features.welcome.header.logo')).toBeInTheDocument();
+    // Check that main sections are rendered (header now uses logo image)
+    expect(screen.getByRole('img', { name: 'features.welcome.header.logo' })).toBeInTheDocument();
     expect(screen.getByText('features.welcome.hero.title')).toBeInTheDocument();
     expect(screen.getByText('features.welcome.features.title')).toBeInTheDocument();
   });
@@ -32,7 +38,7 @@ describe('App', () => {
     const headerButton = screen.getByRole('button', { name: 'features.welcome.header.joinWaitlist' });
     await user.click(headerButton);
     
-    expect(consoleSpy).toHaveBeenCalledWith('Join waitlist clicked!');
+    expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
   });
 
   it('should handle learn more clicks', async () => {
@@ -43,7 +49,7 @@ describe('App', () => {
     const learnMoreButton = screen.getByRole('button', { name: 'features.welcome.hero.learnMore' });
     await user.click(learnMoreButton);
     
-    expect(consoleSpy).toHaveBeenCalledWith('Learn more clicked!');
+    expect(windowOpenSpy).toHaveBeenCalledWith('https://www.linkedin.com/company/bearly-hired/', '_blank', 'noopener,noreferrer');
   });
 
   it('should handle email submissions', async () => {
@@ -56,6 +62,6 @@ describe('App', () => {
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);
     
-    expect(consoleSpy).toHaveBeenCalledWith('Email submitted:', 'test@example.com');
+    expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
   });
 });
