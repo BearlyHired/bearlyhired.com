@@ -45,3 +45,5 @@ temp/
 
 # Keep Claude configuration
 !.claude/
+*storybook.log
+storybook-static
