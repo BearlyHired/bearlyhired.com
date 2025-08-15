@@ -84,6 +84,22 @@
   background-color: #111827;
 }
 
+.email-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.email-error {
+  display: block;
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .email-signup {
