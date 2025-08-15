@@ -8,7 +8,7 @@ export type HeaderProps = {
 };
 
 export const Header = ({ onJoinWaitlist }: HeaderProps) => {
-  const { t } = useTranslation('components', { keyPrefix: 'header' });
+  const { t } = useTranslation('components', { keyPrefix: 'Header' });
 
   return (
     <header className={styles.header}>
@@ -16,7 +16,7 @@ export const Header = ({ onJoinWaitlist }: HeaderProps) => {
         <div className={styles.logo}>
           <img 
             src={logoImage} 
-            alt={t('logo')}
+            alt={t('Bearly Hired')}
             className={styles.logoImage}
           />
         </div>
@@ -25,7 +25,7 @@ export const Header = ({ onJoinWaitlist }: HeaderProps) => {
           onClick={onJoinWaitlist}
           type="button"
         >
-          {t('joinWaitlist')}
+          {t('Join Waitlist')}
         </button>
       </div>
     </header>

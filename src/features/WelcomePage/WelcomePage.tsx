@@ -6,30 +6,29 @@ import { Footer } from '@/components/Footer';
 
 import styles from './WelcomePage.module.scss';
 
-export type WelcomePageProps = {
-  onJoinWaitlist: () => void;
-  onLearnMore: () => void;
-  onEmailSubmit: (email: string) => void;
-};
+export const WelcomePage = () => {
+  const handleJoinWaitlist = () => {
+    alert('hahahha just joking there is not waitlist');
+  };
 
-export const WelcomePage = ({ 
-  onJoinWaitlist, 
-  onLearnMore, 
-  onEmailSubmit 
-}: WelcomePageProps) => {
+  const handleLearnMore = () => {
+    window.location.href = 'https://www.linkedin.com/company/bearly-hired/';
+  };
+
+  const handleEmailSubmit = (email: string) => {
+    console.log('Email submitted:', email);
+    alert('hahahha just joking there is not waitlist');
+  };
   return (
     <div className={styles.welcomePage}>
-      <Header onJoinWaitlist={onJoinWaitlist} />
-      
+      <Header onJoinWaitlist={handleJoinWaitlist} />
+
       <main role="main">
-        <Hero 
-          onJoinWaitlist={onJoinWaitlist} 
-          onLearnMore={onLearnMore} 
-        />
+        <Hero onJoinWaitlist={handleJoinWaitlist} onLearnMore={handleLearnMore} />
         <Features />
-        <EmailSignup onSubmit={onEmailSubmit} />
+        <EmailSignup onSubmit={handleEmailSubmit} />
       </main>
-      
+
       <Footer />
     </div>
   );

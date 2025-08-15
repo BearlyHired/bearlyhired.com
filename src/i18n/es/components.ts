@@ -19,39 +19,39 @@ export const components = {
     login: 'Iniciar Sesión',
     logout: 'Cerrar Sesión',
   },
-  header: {
-    logo: 'Bearly Hired',
-    joinWaitlist: 'Unirse a Lista de Espera',
+  Header: {
+    'Bearly Hired': 'Bearly Hired',
+    'Join Waitlist': 'Unirse a Lista de Espera',
   },
-  hero: {
-    title: 'Profesional.',
-    subtitle: 'Apenas.',
-    description: 'Una red profesional para humanos reales, no "líderes de pensamiento." Sin falsedad corporativa. Sin energía de influencer. Solo personas compartiendo lo que están haciendo, creando, o con lo que luchan.',
-    joinWaitlist: 'Unirse a Lista de Espera',
-    learnMore: 'Saber Más',
+  Hero: {
+    'Professional Title': 'Profesional.',
+    'Barely Subtitle': 'Apenas.',
+    'Actual Humans Description': 'Una red profesional para humanos reales, no "líderes de pensamiento." Sin falsedad corporativa. Sin energía de influencer. Solo personas compartiendo lo que están haciendo, creando, o con lo que luchan.',
+    'Join Waitlist': 'Unirse a Lista de Espera',
+    'Learn More': 'Saber Más',
   },
-  features: {
-    title: 'Networking para los emocionalmente empleados',
+  Features: {
+    'Emotionally Employed Title': 'Networking para los emocionalmente empleados',
     cards: {
       corporate: {
-        title: 'Sin Falsedad Corporativa',
-        description: 'Sé tu yo auténtico sin necesidad de jerga corporativa o actuación.',
+        'No Corporate Fakery': 'Sin Falsedad Corporativa',
+        'Be Authentic': 'Sé tu yo auténtico sin necesidad de jerga corporativa o actuación.',
       },
       lunch: {
-        title: 'Solo Tratando de Llegar al Almuerzo',
-        description: 'Una comunidad que entiende la lucha diaria y celebra las pequeñas victorias.',
+        'Make It To Lunch': 'Solo Tratando de Llegar al Almuerzo',
+        'Daily Struggle': 'Una comunidad que entiende la lucha diaria y celebra las pequeñas victorias.',
       },
       public: {
-        title: 'Construido en Público',
-        description: 'Verdaderamente código abierto y construido en vivo en Twitch con total transparencia.',
+        'Built In Public': 'Construido en Público',
+        'Open Source Twitch': 'Verdaderamente código abierto y construido en vivo en Twitch con total transparencia.',
       },
     },
   },
-  emailSignup: {
-    title: 'Recibe notificaciones cuando lancemos',
-    subtitle: 'Sé el primero en unirte a una red profesional que no se toma demasiado en serio.',
-    emailPlaceholder: 'Ingresa tu email',
-    joinWaitlist: 'Unirse a Lista de Espera',
+  EmailSignup: {
+    'Get Notified': 'Recibe notificaciones cuando lancemos',
+    'Be The First To Join': 'Sé el primero en unirte a una red profesional que no se toma demasiado en serio.',
+    'Enter Email': 'Ingresa tu email',
+    'Join Waitlist': 'Unirse a Lista de Espera',
   },
   footer: {
     launchDate: 'Lanzamiento en Otoño 2023',

@@ -9,7 +9,7 @@ export type HeroProps = {
 };
 
 export const Hero = ({ onJoinWaitlist, onLearnMore }: HeroProps) => {
-  const { t } = useTranslation('components', { keyPrefix: 'hero' });
+  const { t } = useTranslation('components', { keyPrefix: 'Hero' });
 
   return (
     <section className={styles.hero} role="region" aria-labelledby="hero-title">
@@ -18,14 +18,14 @@ export const Hero = ({ onJoinWaitlist, onLearnMore }: HeroProps) => {
           <div className={styles.heroText}>
             <h1 id="hero-title" className={styles.heroTitle}>
               <span className={styles.heroTitlePrimary}>
-                {t('title')}
+                {t('Professional Title')}
               </span>
               <span className={styles.heroTitleSecondary}>
-                {t('subtitle')}
+                {t('Barely Subtitle')}
               </span>
             </h1>
             <p className={styles.heroDescription}>
-              {t('description')}
+              {t('Actual Humans Description')}
             </p>
             <div className={styles.heroButtons}>
               <button 
@@ -33,14 +33,14 @@ export const Hero = ({ onJoinWaitlist, onLearnMore }: HeroProps) => {
                 onClick={onJoinWaitlist}
                 type="button"
               >
-                {t('joinWaitlist')}
+                {t('Join Waitlist')}
               </button>
               <button 
                 className={`${styles.heroButton} ${styles.secondary}`}
                 onClick={onLearnMore}
                 type="button"
               >
-                {t('learnMore')}
+                {t('Learn More')}
               </button>
             </div>
           </div>

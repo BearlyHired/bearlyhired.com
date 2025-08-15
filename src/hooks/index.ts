@@ -1,2 +1,2 @@
 // Export all global/shared hooks here
-export { useTranslation } from './useTranslation';
+// No custom hooks currently - using react-i18next's useTranslation directly

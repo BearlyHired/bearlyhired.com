@@ -2,7 +2,19 @@
 
 ## 🔴 CRITICAL RULES (Never Violate)
 
-### Test-Driven Development
+### Architecture & Component Organization
+- **Components belong in features, not global components** - Header, Hero, Features, EmailSignup belong in `features/WelcomePage/components/`, NOT `src/components/`
+- **Global components are truly reusable** - Only ErrorBoundary, Footer, etc. that work across multiple features
+- **Event handlers live in the component** - Don't pass handlers down as props unless truly necessary for reusability
+- **Self-contained features** - WelcomePage should handle its own interactions, not rely on App-level handlers
+
+### Following Project Guidelines
+- **READ CLAUDE.md FIRST** - Always check existing patterns before implementing
+- **Don't break working systems** - If translations work, don't create custom hooks that break them
+- **Ask for clarification** - If unsure about architecture decisions, ask rather than assume
+- **Pay attention to user feedback** - When user says "silly goose" or "are you paying attention", STOP and reassess
+
+### Test-Driven Development  
 - **NO production code without a failing test first**
 - Follow Red-Green-Refactor strictly
 - 100% behavior coverage required (not line coverage)
@@ -22,6 +34,7 @@
 - No `any` types - use `unknown` if needed
 - No type assertions (`as`) without justification
 - No `@ts-ignore` or `@ts-expect-error`
+- Use type-only imports: `import type { ReactNode, ErrorInfo } from 'react'`
 - Use `type` for component props, form data, API responses, etc.
 
 ### React Components
@@ -146,32 +159,49 @@ type User = z.infer<typeof UserSchema>;
     - `components.ts` - component-specific translations
     - `features.ts` - feature-specific translations
     - `modals.ts` - modal dialog translations
-- **Type-safe translations** - use the custom `useTranslation` hook
-- **Namespace support** - access translations with dot notation: `features.landingPage.hero.title`
+- **Use react-i18next directly** - `import { useTranslation } from 'react-i18next'` (no custom hooks)
+- **Namespace with keyPrefix pattern** - `useTranslation('components', { keyPrefix: 'ComponentName' })`
+- **Translation keys MUST be readable fallbacks** - if translation fails, the key should make sense to users
 - **Form validation messages** - all form validation messages must be in translations
 - **No hardcoded text** - includes placeholders, button text, headings, error messages
 
+#### Translation Key Guidelines
+- **Keys are user-facing fallbacks** - use quoted keys like `'Get Notified': 'Get notified when we launch'`
+- **Component names match namespaces** - `EmailSignup` component uses `EmailSignup` namespace
+- **Meaningful key names** - `'Join Waitlist'` not `'button1'` or `'cta'`
+- **Keys should be readable in UI** - if i18n fails, `'Bearly Hired'` displays instead of `'logoAlt'`
+
 #### i18n Usage Example
 ```typescript
-import { useTranslation } from '@/i18n/use-translation';
+import { useTranslation } from 'react-i18next';
 
-// Basic usage
-function MyComponent() {
-  const { t } = useTranslation('components');
-  return <button>{t('button.loading')}</button>;
-}
+// Component with namespace and keyPrefix
+export const EmailSignup = ({ onSubmit }) => {
+  const { t } = useTranslation('components', { keyPrefix: 'EmailSignup' });
+  
+  return (
+    <section>
+      <h2>{t('Get Notified')}</h2>
+      <p>{t('Be The First To Join')}</p>
+      <input placeholder={t('Enter Email')} />
+      <button>{t('Join Waitlist')}</button>
+    </section>
+  );
+};
 
-// Using keyPrefix for cleaner code
-function LandingPage() {
-  const { t } = useTranslation('features', { keyPrefix: 'landingPage' });
-  return <h1>{t('hero.title')}</h1>; // translates to features.landingPage.hero.title
-}
-
-// Nested keyPrefix for forms
-function ContactForm() {
-  const { t } = useTranslation('features', { keyPrefix: 'landingPage.contact.form' });
-  return <button>{t('submit')}</button>; // translates to features.landingPage.contact.form.submit
-}
+// Translation file structure (components.ts)
+export const components = {
+  EmailSignup: {
+    'Get Notified': 'Get notified when we launch',
+    'Be The First To Join': 'Be the first to join a professional network...',
+    'Enter Email': 'Enter your email',
+    'Join Waitlist': 'Join Waitlist',
+  },
+  Header: {
+    'Bearly Hired': 'Bearly Hired',
+    'Join Waitlist': 'Join Waitlist',
+  },
+};
 ```
 
 ## 🟢 CODING STANDARDS

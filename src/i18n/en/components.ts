@@ -19,39 +19,39 @@ export const components = {
     login: 'Log In',
     logout: 'Log Out',
   },
-  header: {
-    logo: 'Bearly Hired',
-    joinWaitlist: 'Join Waitlist',
+  Header: {
+    'Bearly Hired': 'Bearly Hired',
+    'Join Waitlist': 'Join Waitlist',
   },
-  hero: {
-    title: 'Professional.',
-    subtitle: 'Bearly.',
-    description: 'A professional network for actual humans, not "thought leaders." No corporate fakery. No influencer energy. Just people sharing what they\'re doing, making, or struggling with.',
-    joinWaitlist: 'Join the Waitlist',
-    learnMore: 'Learn More',
+  Hero: {
+    'Professional Title': 'Professional.',
+    'Barely Subtitle': 'Bearly.',
+    'Actual Humans Description': 'A professional network for actual humans, not "thought leaders." No corporate fakery. No influencer energy. Just people sharing what they\'re doing, making, or struggling with.',
+    'Join Waitlist': 'Join the Waitlist',
+    'Learn More': 'Learn More',
   },
-  features: {
-    title: 'Networking for the emotionally employed',
+  Features: {
+    'Emotionally Employed Title': 'Networking for the emotionally employed',
     cards: {
       corporate: {
-        title: 'No Corporate Fakery',
-        description: 'Be authentic self without the need for corporate jargon or performance.',
+        'No Corporate Fakery': 'No Corporate Fakery',
+        'Be Authentic': 'Be authentic self without the need for corporate jargon or performance.',
       },
       lunch: {
-        title: 'Just Trying to Make It to Lunch',
-        description: 'A community that understands the daily struggle and celebrates small wins.',
+        'Make It To Lunch': 'Just Trying to Make It to Lunch',
+        'Daily Struggle': 'A community that understands the daily struggle and celebrates small wins.',
       },
       public: {
-        title: 'Built in Public',
-        description: 'Truly open source and built live on Twitch with complete transparency.',
+        'Built In Public': 'Built in Public',
+        'Open Source Twitch': 'Truly open source and built live on Twitch with complete transparency.',
       },
     },
   },
-  emailSignup: {
-    title: 'Get notified when we launch',
-    subtitle: 'Be the first to join a professional network that doesn\'t take itself too seriously.',
-    emailPlaceholder: 'Enter your email',
-    joinWaitlist: 'Join Waitlist',
+  EmailSignup: {
+    'Get Notified': 'Get notified when we launch',
+    'Be The First To Join': 'Be the first to join a professional network that doesn\'t take itself too seriously.',
+    'Enter Email': 'Enter your email',
+    'Join Waitlist': 'Join Waitlist',
   },
   footer: {
     launchDate: 'Launching in Fall 2023',

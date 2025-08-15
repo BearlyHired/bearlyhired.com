@@ -12,7 +12,7 @@ type FormData = {
 };
 
 export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
-  const { t } = useTranslation('components', { keyPrefix: 'emailSignup' });
+  const { t } = useTranslation('components', { keyPrefix: 'EmailSignup' });
   const { 
     register, 
     handleSubmit, 
@@ -34,10 +34,10 @@ export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
       <div className={styles.container}>
         <div className={styles.content}>
           <h2 id="signup-title" className={styles.title}>
-            {t('title')}
+            {t('Get Notified')}
           </h2>
           <p className={styles.subtitle}>
-            {t('subtitle')}
+            {t('Be The First To Join')}
           </p>
           <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)} role="form" noValidate>
             <div className={styles.inputGroup}>
@@ -51,7 +51,7 @@ export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
                   },
                   onChange: () => clearErrors('email')
                 })}
-                placeholder={t('emailPlaceholder')}
+                placeholder={t('Enter Email')}
                 className={styles.input}
                 aria-label="Email address"
                 aria-invalid={errors.email ? 'true' : 'false'}
@@ -62,7 +62,7 @@ export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
                 className={styles.submitButton}
                 disabled={isSubmitting}
               >
-                {t('joinWaitlist')}
+                {t('Join Waitlist')}
               </button>
             </div>
             {errors.email && (

@@ -8,13 +8,13 @@ export type FeaturesProps = {
 };
 
 export const Features = ({}: FeaturesProps) => {
-  const { t } = useTranslation('components', { keyPrefix: 'features' });
+  const { t } = useTranslation('components', { keyPrefix: 'Features' });
 
   return (
     <section className={styles.features} role="region" aria-labelledby="features-title">
       <div className={styles.featuresContainer}>
         <h2 id="features-title" className={styles.featuresTitle}>
-          {t('title')}
+          {t('Emotionally Employed Title')}
         </h2>
         <ul className={styles.featuresGrid}>
           <li className={styles.featureCard}>
@@ -26,10 +26,10 @@ export const Features = ({}: FeaturesProps) => {
               />
             </div>
             <h3 className={styles.featureTitle}>
-              {t('cards.corporate.title')}
+              {t('cards.corporate.No Corporate Fakery')}
             </h3>
             <p className={styles.featureDescription}>
-              {t('cards.corporate.description')}
+              {t('cards.corporate.Be Authentic')}
             </p>
           </li>
           <li className={styles.featureCard}>
@@ -41,10 +41,10 @@ export const Features = ({}: FeaturesProps) => {
               />
             </div>
             <h3 className={styles.featureTitle}>
-              {t('cards.lunch.title')}
+              {t('cards.lunch.Make It To Lunch')}
             </h3>
             <p className={styles.featureDescription}>
-              {t('cards.lunch.description')}
+              {t('cards.lunch.Daily Struggle')}
             </p>
           </li>
           <li className={styles.featureCard}>
@@ -56,10 +56,10 @@ export const Features = ({}: FeaturesProps) => {
               />
             </div>
             <h3 className={styles.featureTitle}>
-              {t('cards.public.title')}
+              {t('cards.public.Built In Public')}
             </h3>
             <p className={styles.featureDescription}>
-              {t('cards.public.description')}
+              {t('cards.public.Open Source Twitch')}
             </p>
           </li>
         </ul>
