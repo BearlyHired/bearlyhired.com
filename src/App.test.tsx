@@ -27,18 +27,22 @@ describe('App', () => {
   it('should render the WelcomePage', () => {
     render(<App />);
     
-    // Check that main sections are rendered (header now uses logo image)
-    expect(screen.getByRole('img', { name: 'features.welcome.header.logo' })).toBeInTheDocument();
-    expect(screen.getByText('features.welcome.hero.title')).toBeInTheDocument();
-    expect(screen.getByText('features.welcome.features.title')).toBeInTheDocument();
+    // Check that main sections are rendered
+    expect(screen.getByRole('img', { name: 'Bearly Hired' })).toBeInTheDocument();
+    // Check for hero section by its h1 heading
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+    // Check for sections by their landmark roles
+    expect(screen.getByRole('banner')).toBeInTheDocument(); // Header
+    expect(screen.getByRole('main')).toBeInTheDocument(); // Main content
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument(); // Footer
   });
 
   it('should handle join waitlist clicks', async () => {
     const user = userEvent.setup();
     render(<App />);
     
-    // Click the header join waitlist button
-    const headerButton = screen.getByRole('button', { name: 'features.welcome.header.joinWaitlist' });
+    // Click the header join waitlist button (first one)
+    const headerButton = screen.getAllByRole('button', { name: 'Join Waitlist' })[0];
     await user.click(headerButton);
     
     expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
@@ -49,7 +53,7 @@ describe('App', () => {
     render(<App />);
     
     // Click the learn more button
-    const learnMoreButton = screen.getByRole('button', { name: 'features.welcome.hero.learnMore' });
+    const learnMoreButton = screen.getByRole('button', { name: 'Learn More' });
     await user.click(learnMoreButton);
     
     expect(window.location.href).toBe('https://www.linkedin.com/company/bearly-hired/');
@@ -60,7 +64,7 @@ describe('App', () => {
     render(<App />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i });
-    const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+    const submitButton = screen.getAllByRole('button', { name: 'Join Waitlist' })[2]; // Third one is EmailSignup submit button
     
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);

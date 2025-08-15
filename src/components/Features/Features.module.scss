@@ -1,0 +1,138 @@
+// Variables
+$color-bg-light: #f9fafb;
+$color-bg-white: #ffffff;
+$color-text-primary: #1f2937;
+$color-text-secondary: #6b7280;
+$color-gradient-start: #fef3c7;
+$color-gradient-end: #f59e0b;
+
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-2xl: 4rem;
+$spacing-3xl: 6rem;
+
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 2rem;
+$font-size-2xl: 2.25rem;
+$font-size-3xl: 2.5rem;
+
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$border-radius-md: 12px;
+$border-radius-full: 50%;
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+$transition-fast: 0.2s ease-in-out;
+
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+.features {
+  background-color: $color-bg-light;
+  padding: $spacing-3xl 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-2xl 0;
+  }
+}
+
+.featuresContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-sm;
+}
+
+.featuresTitle {
+  text-align: center;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  margin: 0 0 $spacing-2xl 0;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-desktop) {
+    font-size: $font-size-2xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: $breakpoint-desktop) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.featureCard {
+  background-color: $color-bg-white;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  text-align: center;
+  box-shadow: $shadow-md;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-md;
+  }
+}
+
+.featureIcon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, $color-gradient-start 0%, $color-gradient-end 100%);
+  border-radius: $border-radius-full;
+  margin: 0 auto $spacing-md auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.featureIconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.featureTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0 0 $spacing-sm 0;
+  line-height: 1.3;
+}
+
+.featureDescription {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  line-height: 1.6;
+  margin: 0;
+}

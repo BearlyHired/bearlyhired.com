@@ -1,6 +1,7 @@
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslation } from 'react-i18next';
 import heroImage from '@/assets/images/heroImage.png';
-import './Hero.css';
+
+import styles from './Hero.module.scss';
 
 export type HeroProps = {
   onJoinWaitlist: () => void;
@@ -8,46 +9,46 @@ export type HeroProps = {
 };
 
 export const Hero = ({ onJoinWaitlist, onLearnMore }: HeroProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('components', { keyPrefix: 'hero' });
 
   return (
-    <section className="hero" role="region" aria-labelledby="hero-title">
-      <div className="hero-container">
-        <div className="hero-content">
-          <div className="hero-text">
-            <h1 id="hero-title" className="hero-title">
-              <span className="hero-title-primary">
-                {t('features.welcome.hero.title')}
+    <section className={styles.hero} role="region" aria-labelledby="hero-title">
+      <div className={styles.heroContainer}>
+        <div className={styles.heroContent}>
+          <div className={styles.heroText}>
+            <h1 id="hero-title" className={styles.heroTitle}>
+              <span className={styles.heroTitlePrimary}>
+                {t('title')}
               </span>
-              <span className="hero-title-secondary">
-                {t('features.welcome.hero.subtitle')}
+              <span className={styles.heroTitleSecondary}>
+                {t('subtitle')}
               </span>
             </h1>
-            <p className="hero-description">
-              {t('features.welcome.hero.description')}
+            <p className={styles.heroDescription}>
+              {t('description')}
             </p>
-            <div className="hero-buttons">
+            <div className={styles.heroButtons}>
               <button 
-                className="hero-button primary"
+                className={`${styles.heroButton} ${styles.primary}`}
                 onClick={onJoinWaitlist}
                 type="button"
               >
-                {t('features.welcome.hero.joinWaitlist')}
+                {t('joinWaitlist')}
               </button>
               <button 
-                className="hero-button secondary"
+                className={`${styles.heroButton} ${styles.secondary}`}
                 onClick={onLearnMore}
                 type="button"
               >
-                {t('features.welcome.hero.learnMore')}
+                {t('learnMore')}
               </button>
             </div>
           </div>
-          <div className="hero-illustration">
+          <div className={styles.heroIllustration}>
             <img 
               src={heroImage} 
               alt="Bearly Hired mascot - a friendly bear representing professional networking"
-              className="hero-image"
+              className={styles.heroImage}
             />
           </div>
         </div>

@@ -12,25 +12,25 @@ describe('Features', () => {
     const props = getMockFeaturesProps();
     render(<Features {...props} />);
     
-    expect(screen.getByText('features.welcome.features.title')).toBeInTheDocument();
+    expect(screen.getByText('Networking for the emotionally employed')).toBeInTheDocument();
   });
 
   it('should render all three feature cards', () => {
     const props = getMockFeaturesProps();
     render(<Features {...props} />);
     
-    expect(screen.getByText('features.welcome.features.cards.corporate.title')).toBeInTheDocument();
-    expect(screen.getByText('features.welcome.features.cards.lunch.title')).toBeInTheDocument();
-    expect(screen.getByText('features.welcome.features.cards.public.title')).toBeInTheDocument();
+    expect(screen.getByText('No Corporate Fakery')).toBeInTheDocument();
+    expect(screen.getByText('Just Trying to Make It to Lunch')).toBeInTheDocument();
+    expect(screen.getByText('Built in Public')).toBeInTheDocument();
   });
 
   it('should render feature card descriptions', () => {
     const props = getMockFeaturesProps();
     render(<Features {...props} />);
     
-    expect(screen.getByText('features.welcome.features.cards.corporate.description')).toBeInTheDocument();
-    expect(screen.getByText('features.welcome.features.cards.lunch.description')).toBeInTheDocument();
-    expect(screen.getByText('features.welcome.features.cards.public.description')).toBeInTheDocument();
+    expect(screen.getByText('Be authentic self without the need for corporate jargon or performance.')).toBeInTheDocument();
+    expect(screen.getByText('A community that understands the daily struggle and celebrates small wins.')).toBeInTheDocument();
+    expect(screen.getByText('Truly open source and built live on Twitch with complete transparency.')).toBeInTheDocument();
   });
 
   it('should have proper semantic structure', () => {

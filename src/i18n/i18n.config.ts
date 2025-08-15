@@ -4,18 +4,16 @@ import { en } from './en';
 import { es } from './es';
 
 const resources = {
-  en: {
-    translation: en,
-  },
-  es: {
-    translation: es,
-  },
+  en,
+  es,
 } as const;
 
 i18n.use(initReactI18next).init({
   resources,
   lng: 'en', // default language
   fallbackLng: 'en',
+  ns: ['components', 'features', 'modals'],
+  defaultNS: 'components',
   interpolation: {
     escapeValue: false, // React already does escaping
   },

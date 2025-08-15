@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { useTranslation } from '@/hooks/useTranslation';
-import './EmailSignup.css';
+import { useTranslation } from 'react-i18next';
+
+import styles from './EmailSignup.module.scss';
 
 export type EmailSignupProps = {
   onSubmit: (email: string) => void;
@@ -11,7 +12,7 @@ type FormData = {
 };
 
 export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('components', { keyPrefix: 'emailSignup' });
   const { 
     register, 
     handleSubmit, 
@@ -29,17 +30,17 @@ export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
   };
 
   return (
-    <section className="email-signup" role="region" aria-labelledby="signup-title">
-      <div className="email-signup-container">
-        <div className="email-signup-content">
-          <h2 id="signup-title" className="email-signup-title">
-            {t('features.welcome.signup.title')}
+    <section className={styles.emailSignup} role="region" aria-labelledby="signup-title">
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <h2 id="signup-title" className={styles.title}>
+            {t('title')}
           </h2>
-          <p className="email-signup-subtitle">
-            {t('features.welcome.signup.subtitle')}
+          <p className={styles.subtitle}>
+            {t('subtitle')}
           </p>
-          <form className="email-signup-form" onSubmit={handleSubmit(onFormSubmit)} role="form" noValidate>
-            <div className="email-input-group">
+          <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)} role="form" noValidate>
+            <div className={styles.inputGroup}>
               <input
                 type="email"
                 {...register('email', {
@@ -50,22 +51,22 @@ export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
                   },
                   onChange: () => clearErrors('email')
                 })}
-                placeholder={t('features.welcome.signup.emailPlaceholder')}
-                className="email-input"
+                placeholder={t('emailPlaceholder')}
+                className={styles.input}
                 aria-label="Email address"
                 aria-invalid={errors.email ? 'true' : 'false'}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
               <button
                 type="submit"
-                className="email-submit-button"
+                className={styles.submitButton}
                 disabled={isSubmitting}
               >
-                {t('features.welcome.signup.joinWaitlist')}
+                {t('joinWaitlist')}
               </button>
             </div>
             {errors.email && (
-              <span id="email-error" className="email-error" role="alert">
+              <span id="email-error" className={styles.error} role="alert">
                 {errors.email.message}
               </span>
             )}

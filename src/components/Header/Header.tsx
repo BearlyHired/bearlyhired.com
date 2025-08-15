@@ -1,30 +1,31 @@
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslation } from 'react-i18next';
 import logoImage from '@/assets/images/logo.png';
-import './Header.css';
+
+import styles from './Header.module.scss';
 
 export type HeaderProps = {
   onJoinWaitlist: () => void;
 };
 
 export const Header = ({ onJoinWaitlist }: HeaderProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('components', { keyPrefix: 'header' });
 
   return (
-    <header className="header">
-      <div className="header-container">
-        <div className="logo">
+    <header className={styles.header}>
+      <div className={styles.headerContainer}>
+        <div className={styles.logo}>
           <img 
             src={logoImage} 
-            alt={t('features.welcome.header.logo')}
-            className="logo-image"
+            alt={t('logo')}
+            className={styles.logoImage}
           />
         </div>
         <button 
-          className="join-waitlist-button"
+          className={styles.joinWaitlistButton}
           onClick={onJoinWaitlist}
           type="button"
         >
-          {t('features.welcome.header.joinWaitlist')}
+          {t('joinWaitlist')}
         </button>
       </div>
     </header>

@@ -15,14 +15,14 @@ describe('EmailSignup', () => {
     const props = getMockEmailSignupProps();
     render(<EmailSignup {...props} />);
     
-    expect(screen.getByText('features.welcome.signup.title')).toBeInTheDocument();
+    expect(screen.getByText('Get notified when we launch')).toBeInTheDocument();
   });
 
   it('should render the subtitle', () => {
     const props = getMockEmailSignupProps();
     render(<EmailSignup {...props} />);
     
-    expect(screen.getByText('features.welcome.signup.subtitle')).toBeInTheDocument();
+    expect(screen.getByText('Be the first to join a professional network that doesn\'t take itself too seriously.')).toBeInTheDocument();
   });
 
   it('should render email input field', () => {
@@ -38,7 +38,7 @@ describe('EmailSignup', () => {
     const props = getMockEmailSignupProps();
     render(<EmailSignup {...props} />);
     
-    expect(screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Join Waitlist' })).toBeInTheDocument();
   });
 
   it('should call onSubmit when form is submitted with valid email', async () => {
@@ -49,7 +49,7 @@ describe('EmailSignup', () => {
     render(<EmailSignup {...props} />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i });
-    const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+    const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
     
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);
@@ -65,7 +65,7 @@ describe('EmailSignup', () => {
     
     render(<EmailSignup {...props} />);
     
-    const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+    const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
     await user.click(submitButton);
     
     expect(mockOnSubmit).not.toHaveBeenCalled();
@@ -90,7 +90,7 @@ describe('EmailSignup', () => {
     render(<EmailSignup {...props} />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i }) as HTMLInputElement;
-    const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+    const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
     
     await user.type(emailInput, 'test@example.com');
     expect(emailInput.value).toBe('test@example.com');
@@ -109,7 +109,7 @@ describe('EmailSignup', () => {
       render(<EmailSignup {...props} />);
       
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+      const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
       
       await user.type(emailInput, 'invalid-email');
       await user.click(submitButton);
@@ -129,7 +129,7 @@ describe('EmailSignup', () => {
       render(<EmailSignup {...props} />);
       
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+      const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
       
       await user.click(emailInput);
       await user.click(submitButton);
@@ -149,7 +149,7 @@ describe('EmailSignup', () => {
       render(<EmailSignup {...props} />);
       
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+      const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
       
       await user.type(emailInput, 'test@example.com');
       await user.click(submitButton);
@@ -169,7 +169,7 @@ describe('EmailSignup', () => {
       render(<EmailSignup {...props} />);
       
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+      const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
       
       await user.type(emailInput, '  test@example.com  ');
       await user.click(submitButton);
@@ -187,7 +187,7 @@ describe('EmailSignup', () => {
       render(<EmailSignup {...props} />);
       
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+      const submitButton = screen.getByRole('button', { name: 'Join Waitlist' });
       
       await user.type(emailInput, 'invalid');
       await user.click(submitButton);

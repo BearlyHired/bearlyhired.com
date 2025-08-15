@@ -17,20 +17,15 @@ describe('WelcomePage', () => {
     const props = getMockWelcomePageProps();
     render(<WelcomePage {...props} />);
     
-    // Check for Header component
-    expect(screen.getByText('features.welcome.header.logo')).toBeInTheDocument();
+    // Check for main structural elements
+    expect(screen.getByRole('banner')).toBeInTheDocument(); // Header
+    expect(screen.getByRole('main')).toBeInTheDocument(); // Main content area
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument(); // Footer
     
-    // Check for Hero component
-    expect(screen.getByText('features.welcome.hero.title')).toBeInTheDocument();
-    
-    // Check for Features component
-    expect(screen.getByText('features.welcome.features.title')).toBeInTheDocument();
-    
-    // Check for EmailSignup component
-    expect(screen.getByText('features.welcome.signup.title')).toBeInTheDocument();
-    
-    // Check for Footer component
-    expect(screen.getByText('features.welcome.footer.launchDate')).toBeInTheDocument();
+    // Check for specific component elements
+    expect(screen.getByAltText('logo')).toBeInTheDocument(); // Header logo
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument(); // Hero title
+    expect(screen.getByLabelText('Email address')).toBeInTheDocument(); // Email signup
   });
 
   it('should handle header join waitlist button click', async () => {
@@ -40,8 +35,8 @@ describe('WelcomePage', () => {
     
     render(<WelcomePage {...props} />);
     
-    // Find the header join waitlist button
-    const headerButton = screen.getByRole('button', { name: 'features.welcome.header.joinWaitlist' });
+    // Find the header join waitlist button (first one)
+    const headerButton = screen.getAllByRole('button', { name: 'joinWaitlist' })[0];
     await user.click(headerButton);
     
     expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
@@ -59,8 +54,8 @@ describe('WelcomePage', () => {
     render(<WelcomePage {...props} />);
     
     // Find hero buttons
-    const joinWaitlistButton = screen.getByRole('button', { name: 'features.welcome.hero.joinWaitlist' });
-    const learnMoreButton = screen.getByRole('button', { name: 'features.welcome.hero.learnMore' });
+    const joinWaitlistButton = screen.getAllByRole('button', { name: 'joinWaitlist' })[1]; // Second one is from Hero
+    const learnMoreButton = screen.getByRole('button', { name: 'learnMore' });
     
     await user.click(joinWaitlistButton);
     expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
@@ -77,7 +72,7 @@ describe('WelcomePage', () => {
     render(<WelcomePage {...props} />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i });
-    const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+    const submitButton = screen.getAllByRole('button', { name: 'joinWaitlist' })[2]; // Third one is from EmailSignup
     
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);

@@ -15,7 +15,7 @@ describe('Header', () => {
     const props = getMockHeaderProps();
     render(<Header {...props} />);
     
-    const logoImage = screen.getByRole('img', { name: 'features.welcome.header.logo' });
+    const logoImage = screen.getByRole('img', { name: 'logo' });
     expect(logoImage).toBeInTheDocument();
     expect(logoImage).toHaveAttribute('src', '/src/assets/images/logo.png');
   });
@@ -24,7 +24,7 @@ describe('Header', () => {
     const props = getMockHeaderProps();
     render(<Header {...props} />);
     
-    expect(screen.getByRole('button', { name: 'features.welcome.header.joinWaitlist' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'joinWaitlist' })).toBeInTheDocument();
   });
 
   it('should call onJoinWaitlist when Join Waitlist button is clicked', async () => {
@@ -34,7 +34,7 @@ describe('Header', () => {
     
     render(<Header {...props} />);
     
-    await user.click(screen.getByRole('button', { name: 'features.welcome.header.joinWaitlist' }));
+    await user.click(screen.getByRole('button', { name: 'joinWaitlist' }));
     expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
   });
 

@@ -1,0 +1,12 @@
+// Variables
+$min-height-full: 100vh;
+
+.welcomePage {
+  min-height: $min-height-full;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+  }
+}

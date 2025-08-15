@@ -3,7 +3,8 @@ import { Hero } from '@/components/Hero';
 import { Features } from '@/components/Features';
 import { EmailSignup } from '@/components/EmailSignup';
 import { Footer } from '@/components/Footer';
-import './WelcomePage.css';
+
+import styles from './WelcomePage.module.scss';
 
 export type WelcomePageProps = {
   onJoinWaitlist: () => void;
@@ -17,7 +18,7 @@ export const WelcomePage = ({
   onEmailSubmit 
 }: WelcomePageProps) => {
   return (
-    <div className="welcome-page">
+    <div className={styles.welcomePage}>
       <Header onJoinWaitlist={onJoinWaitlist} />
       
       <main role="main">
