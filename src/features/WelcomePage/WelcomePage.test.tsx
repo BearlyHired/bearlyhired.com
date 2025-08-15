@@ -23,7 +23,7 @@ describe('WelcomePage', () => {
     expect(screen.getByRole('contentinfo')).toBeInTheDocument(); // Footer
     
     // Check for specific component elements
-    expect(screen.getByAltText('logo')).toBeInTheDocument(); // Header logo
+    expect(screen.getByAltText('Bearly Hired')).toBeInTheDocument(); // Header logo
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument(); // Hero title
     expect(screen.getByLabelText('Email address')).toBeInTheDocument(); // Email signup
   });
@@ -36,7 +36,7 @@ describe('WelcomePage', () => {
     render(<WelcomePage {...props} />);
     
     // Find the header join waitlist button (first one)
-    const headerButton = screen.getAllByRole('button', { name: 'joinWaitlist' })[0];
+    const headerButton = screen.getAllByRole('button', { name: 'Join Waitlist' })[0];
     await user.click(headerButton);
     
     expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
@@ -54,8 +54,8 @@ describe('WelcomePage', () => {
     render(<WelcomePage {...props} />);
     
     // Find hero buttons
-    const joinWaitlistButton = screen.getAllByRole('button', { name: 'joinWaitlist' })[1]; // Second one is from Hero
-    const learnMoreButton = screen.getByRole('button', { name: 'learnMore' });
+    const joinWaitlistButton = screen.getAllByRole('button', { name: 'Join the Waitlist' })[0]; // Hero button
+    const learnMoreButton = screen.getByRole('button', { name: 'Learn More' });
     
     await user.click(joinWaitlistButton);
     expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
@@ -72,7 +72,7 @@ describe('WelcomePage', () => {
     render(<WelcomePage {...props} />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i });
-    const submitButton = screen.getAllByRole('button', { name: 'joinWaitlist' })[2]; // Third one is from EmailSignup
+    const submitButton = screen.getAllByRole('button', { name: 'Join Waitlist' })[1]; // EmailSignup button
     
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);

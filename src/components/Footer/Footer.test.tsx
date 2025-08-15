@@ -12,14 +12,14 @@ describe('Footer', () => {
     const props = getMockFooterProps();
     render(<Footer {...props} />);
     
-    expect(screen.getByText('launchDate')).toBeInTheDocument();
+    expect(screen.getByText('Launching in Fall 2023')).toBeInTheDocument();
   });
 
   it('should render the copyright text', () => {
     const props = getMockFooterProps();
     render(<Footer {...props} />);
     
-    expect(screen.getByText('copyright')).toBeInTheDocument();
+    expect(screen.getByText('© 2023 Bearly Hired. All rights reserved.')).toBeInTheDocument();
   });
 
   it('should have proper semantic structure', () => {
