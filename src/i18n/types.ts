@@ -21,8 +21,6 @@ declare module 'i18next' {
   interface CustomTypeOptions {
     returnNull: false;
     returnObjects: true;
-    resources: {
-      translation: TranslationResources;
-    };
+    resources: TranslationResources;
   }
 }

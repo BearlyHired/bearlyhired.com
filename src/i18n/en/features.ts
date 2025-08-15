@@ -1,43 +1,7 @@
 export const features = {
   welcome: {
-    header: {
-      logo: 'Bearly Hired',
-      joinWaitlist: 'Join Waitlist',
-    },
-    hero: {
-      title: 'Professional.',
-      subtitle: 'Bearly.',
-      description: 'A professional network for actual humans, not "thought leaders." No corporate fakery. No influencer energy. Just people sharing what they\'re doing, making, or struggling with.',
-      joinWaitlist: 'Join the Waitlist',
-      learnMore: 'Learn More',
-    },
-    features: {
-      title: 'Networking for the emotionally employed',
-      cards: {
-        corporate: {
-          title: 'No Corporate Fakery',
-          description: 'Be authentic self without the need for corporate jargon or performance.',
-        },
-        lunch: {
-          title: 'Just Trying to Make It to Lunch',
-          description: 'A community that understands the daily struggle and celebrates small wins.',
-        },
-        public: {
-          title: 'Built in Public',
-          description: 'Truly open source and built live on Twitch with complete transparency.',
-        },
-      },
-    },
-    signup: {
-      title: 'Get notified when we launch',
-      subtitle: 'Be the first to join a professional network that doesn\'t take itself too seriously.',
-      emailPlaceholder: 'Enter your email',
-      joinWaitlist: 'Join Waitlist',
-    },
-    footer: {
-      launchDate: 'Launching in Fall 2023',
-      copyright: '© 2023 Bearly Hired. All rights reserved.',
-    },
+    // WelcomePage feature doesn't need its own translations since it just composes components
+    // All content is handled by individual reusable components
   },
   auth: {
     login: {

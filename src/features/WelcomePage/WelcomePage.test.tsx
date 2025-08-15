@@ -1,94 +1,80 @@
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { WelcomePage, type WelcomePageProps } from './WelcomePage';
+import { WelcomePage } from './WelcomePage';
 
-const getMockWelcomePageProps = (
-  overrides?: Partial<WelcomePageProps>
-): WelcomePageProps => ({
-  onJoinWaitlist: vi.fn(),
-  onLearnMore: vi.fn(),
-  onEmailSubmit: vi.fn(),
-  ...overrides,
+// Mock alert and window.location
+const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
+Object.defineProperty(window, 'location', {
+  value: { href: '' },
+  writable: true,
 });
 
 describe('WelcomePage', () => {
+  beforeEach(() => {
+    alertSpy.mockClear();
+    window.location.href = '';
+  });
+
+  afterAll(() => {
+    alertSpy.mockRestore();
+  });
+
   it('should render all main sections', () => {
-    const props = getMockWelcomePageProps();
-    render(<WelcomePage {...props} />);
+    render(<WelcomePage />);
     
-    // Check for Header component
-    expect(screen.getByText('features.welcome.header.logo')).toBeInTheDocument();
+    // Check for main structural elements
+    expect(screen.getByRole('banner')).toBeInTheDocument(); // Header
+    expect(screen.getByRole('main')).toBeInTheDocument(); // Main content area
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument(); // Footer
     
-    // Check for Hero component
-    expect(screen.getByText('features.welcome.hero.title')).toBeInTheDocument();
-    
-    // Check for Features component
-    expect(screen.getByText('features.welcome.features.title')).toBeInTheDocument();
-    
-    // Check for EmailSignup component
-    expect(screen.getByText('features.welcome.signup.title')).toBeInTheDocument();
-    
-    // Check for Footer component
-    expect(screen.getByText('features.welcome.footer.launchDate')).toBeInTheDocument();
+    // Check for specific component elements
+    expect(screen.getByAltText('Bearly Hired')).toBeInTheDocument(); // Header logo
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument(); // Hero title
+    expect(screen.getByLabelText('Email address')).toBeInTheDocument(); // Email signup
   });
 
   it('should handle header join waitlist button click', async () => {
     const user = userEvent.setup();
-    const mockOnJoinWaitlist = vi.fn();
-    const props = getMockWelcomePageProps({ onJoinWaitlist: mockOnJoinWaitlist });
+    render(<WelcomePage />);
     
-    render(<WelcomePage {...props} />);
-    
-    // Find the header join waitlist button
-    const headerButton = screen.getByRole('button', { name: 'features.welcome.header.joinWaitlist' });
+    // Find the header join waitlist button (first one)
+    const headerButton = screen.getAllByRole('button', { name: 'Join Waitlist' })[0];
     await user.click(headerButton);
     
-    expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
+    expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
   });
 
   it('should handle hero section button clicks', async () => {
     const user = userEvent.setup();
-    const mockOnJoinWaitlist = vi.fn();
-    const mockOnLearnMore = vi.fn();
-    const props = getMockWelcomePageProps({ 
-      onJoinWaitlist: mockOnJoinWaitlist,
-      onLearnMore: mockOnLearnMore,
-    });
-    
-    render(<WelcomePage {...props} />);
+    render(<WelcomePage />);
     
     // Find hero buttons
-    const joinWaitlistButton = screen.getByRole('button', { name: 'features.welcome.hero.joinWaitlist' });
-    const learnMoreButton = screen.getByRole('button', { name: 'features.welcome.hero.learnMore' });
+    const joinWaitlistButton = screen.getAllByRole('button', { name: 'Join the Waitlist' })[0]; // Hero button
+    const learnMoreButton = screen.getByRole('button', { name: 'Learn More' });
     
     await user.click(joinWaitlistButton);
-    expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
+    expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
     
     await user.click(learnMoreButton);
-    expect(mockOnLearnMore).toHaveBeenCalledTimes(1);
+    expect(window.location.href).toBe('https://www.linkedin.com/company/bearly-hired/');
   });
 
   it('should handle email signup form submission', async () => {
     const user = userEvent.setup();
-    const mockOnEmailSubmit = vi.fn();
-    const props = getMockWelcomePageProps({ onEmailSubmit: mockOnEmailSubmit });
-    
-    render(<WelcomePage {...props} />);
+    render(<WelcomePage />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i });
-    const submitButton = screen.getByRole('button', { name: 'features.welcome.signup.joinWaitlist' });
+    const submitButton = screen.getAllByRole('button', { name: 'Join Waitlist' })[1]; // EmailSignup button
     
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);
     
-    expect(mockOnEmailSubmit).toHaveBeenCalledTimes(1);
-    expect(mockOnEmailSubmit).toHaveBeenCalledWith('test@example.com');
+    expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
   });
 
   it('should have proper page structure', () => {
-    const props = getMockWelcomePageProps();
-    render(<WelcomePage {...props} />);
+    render(<WelcomePage />);
     
     // Check for main page container
     const page = screen.getByRole('main');

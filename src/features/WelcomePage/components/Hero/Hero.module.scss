@@ -1,0 +1,180 @@
+// Variables
+$color-primary: #1f2937;
+$color-primary-hover: #374151;
+$color-secondary: #8b4513;
+$color-text-primary: #1f2937;
+$color-text-secondary: #6b7280;
+$color-border: #d1d5db;
+$color-border-hover: #9ca3af;
+$color-bg-white: #ffffff;
+$color-bg-secondary-hover: #f9fafb;
+$color-bg-gradient-start: #fef3c7;
+$color-bg-gradient-end: #f59e0b;
+$color-gradient-text: #92400e;
+
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 4rem;
+$spacing-2xl: 6rem;
+
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 2.25rem;
+$font-size-3xl: 3rem;
+
+$font-weight-light: 300;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 20px;
+
+$breakpoint-tablet: 768px;
+
+$transition-fast: 0.2s ease-in-out;
+
+.hero {
+  background-color: $color-bg-white;
+  padding: $spacing-xl 0 $spacing-2xl 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-lg 0 $spacing-xl 0;
+  }
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-sm;
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-xl;
+  align-items: center;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    text-align: center;
+  }
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.heroTitle {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: 1.1;
+  margin: 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: $font-size-2xl;
+  }
+}
+
+.heroTitlePrimary {
+  display: block;
+  color: $color-text-primary;
+}
+
+.heroTitleSecondary {
+  display: block;
+  color: $color-secondary;
+  font-style: italic;
+  font-weight: $font-weight-light;
+}
+
+.heroDescription {
+  font-size: $font-size-lg;
+  color: $color-text-secondary;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.heroButtons {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-sm;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-tablet) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.heroButton {
+  padding: 0.875rem 2rem;
+  border-radius: $border-radius-sm;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: 2px solid transparent;
+
+  &.primary {
+    background-color: $color-primary;
+    color: white;
+    border-color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary-hover;
+      border-color: $color-primary-hover;
+    }
+  }
+
+  &.secondary {
+    background-color: transparent;
+    color: $color-text-primary;
+    border-color: $color-border;
+
+    &:hover {
+      background-color: $color-bg-secondary-hover;
+      border-color: $color-border-hover;
+    }
+  }
+}
+
+.heroIllustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  max-width: 450px;
+  border-radius: $border-radius-md;
+
+  @media (max-width: $breakpoint-tablet) {
+    max-width: 350px;
+  }
+}
+
+.bearPlaceholder {
+  width: 400px;
+  height: 300px;
+  background: linear-gradient(135deg, $color-bg-gradient-start 0%, $color-bg-gradient-end 100%);
+  border-radius: $border-radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xl;
+  color: $color-gradient-text;
+  font-weight: $font-weight-semibold;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 300px;
+    height: 225px;
+  }
+}

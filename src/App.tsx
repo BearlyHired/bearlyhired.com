@@ -1,25 +1,17 @@
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { WelcomePage } from '@/features/WelcomePage';
+
 import './App.css';
 
 function App() {
-  const handleJoinWaitlist = () => {
-    alert('hahahha just joking there is not waitlist');
-  };
-
-  const handleLearnMore = () => {
-    window.location.href = 'https://www.linkedin.com/company/bearly-hired/';
-  };
-
-  const handleEmailSubmit = (_email: string) => {
-    alert('hahahha just joking there is not waitlist');
+  const handleError = (error: Error, errorInfo: React.ErrorInfo) => {
+    console.error('Application error:', error, errorInfo);
   };
 
   return (
-    <WelcomePage
-      onJoinWaitlist={handleJoinWaitlist}
-      onLearnMore={handleLearnMore}
-      onEmailSubmit={handleEmailSubmit}
-    />
+    <ErrorBoundary onError={handleError}>
+      <WelcomePage />
+    </ErrorBoundary>
   );
 }
 

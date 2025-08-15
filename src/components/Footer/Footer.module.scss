@@ -1,0 +1,138 @@
+// Variables
+$color-bg-dark: #1f2937;
+$color-border-dark: #374151;
+$color-bg-dark-hover: #4b5563;
+$color-bg-social: #374151;
+$color-text-white: #ffffff;
+$color-text-light: #d1d5db;
+$color-text-muted: #9ca3af;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+
+$font-weight-medium: 500;
+
+$border-radius-sm: 8px;
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+
+$transition-fast: 0.2s ease-in-out;
+
+.footer {
+  background-color: $color-bg-dark;
+  color: $color-text-white;
+  padding: $spacing-2xl 0 $spacing-xl 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-xl 0 $spacing-lg 0;
+  }
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $color-border-dark;
+  padding-top: $spacing-xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    flex-direction: column;
+    gap: $spacing-lg;
+    text-align: center;
+  }
+}
+
+.footerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  @media (max-width: $breakpoint-tablet) {
+    align-items: center;
+  }
+}
+
+.footerLaunchDate {
+  font-size: $font-size-base;
+  color: $color-text-light;
+  margin: 0;
+  font-weight: $font-weight-medium;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-sm;
+  }
+}
+
+.footerCopyright {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  margin: 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-xs;
+  }
+}
+
+.footerSocial {
+  display: flex;
+  gap: $spacing-md;
+  align-items: center;
+
+  @media (max-width: $breakpoint-tablet) {
+    gap: $spacing-sm;
+  }
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-sm;
+  background-color: $color-bg-social;
+  color: $color-text-light;
+  transition: all $transition-fast;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $color-bg-dark-hover;
+    color: $color-text-white;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 18px;
+    height: 18px;
+  }
+}

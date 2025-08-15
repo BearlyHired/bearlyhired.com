@@ -1,0 +1,103 @@
+// Variables
+$color-bg-white: #ffffff;
+$color-border: #e5e7eb;
+$color-text-primary: #1f2937;
+$color-primary-orange: #f97316;
+$color-primary-orange-hover: #ea580c;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.8rem;
+$font-size-base: 0.875rem;
+$font-size-lg: 1.5rem;
+
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$border-radius-sm: 6px;
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+
+$transition-fast: 0.2s ease-in-out;
+
+.header {
+  background-color: $color-bg-white;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-sm 0;
+}
+
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $spacing-sm;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0 $spacing-xs;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  width: 300px;
+  height: 45px;
+  object-fit: contain;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 200px;
+    height: 30px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 150px;
+    height: 22.5px;
+  }
+}
+
+.logoText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  text-decoration: none;
+}
+
+.joinWaitlistButton {
+  background-color: $color-primary-orange;
+  color: white;
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: 0.75rem $spacing-md;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-primary-orange-hover;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-orange;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0.4rem 0.8rem;
+    font-size: $font-size-xs;
+  }
+}

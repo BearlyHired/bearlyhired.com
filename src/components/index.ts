@@ -1,2 +1,3 @@
-// Export all pure components here
-export * from './Header';
+// Export all pure, reusable components here
+export * from './ErrorBoundary';
+export * from './Footer';

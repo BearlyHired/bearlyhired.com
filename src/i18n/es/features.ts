@@ -1,43 +1,7 @@
 export const features = {
   welcome: {
-    header: {
-      logo: 'Bearly Hired',
-      joinWaitlist: 'Unirse a Lista de Espera',
-    },
-    hero: {
-      title: 'Profesional.',
-      subtitle: 'Bearly.',
-      description: 'Una red profesional para humanos reales, no "líderes de pensamiento." Sin falsedad corporativa. Sin energía de influencer. Solo personas compartiendo lo que están haciendo, creando o luchando.',
-      joinWaitlist: 'Únete a la Lista de Espera',
-      learnMore: 'Saber Más',
-    },
-    features: {
-      title: 'Redes para los emocionalmente empleados',
-      cards: {
-        corporate: {
-          title: 'Sin Falsedad Corporativa',
-          description: 'Ser auténtico sin necesidad de jerga corporativa o actuación.',
-        },
-        lunch: {
-          title: 'Solo Tratando de Llegar al Almuerzo',
-          description: 'Una comunidad que entiende la lucha diaria y celebra las pequeñas victorias.',
-        },
-        public: {
-          title: 'Construido en Público',
-          description: 'Verdaderamente de código abierto y construido en vivo en Twitch con completa transparencia.',
-        },
-      },
-    },
-    signup: {
-      title: 'Recibe notificaciones cuando lancemos',
-      subtitle: 'Sé el primero en unirte a una red profesional que no se toma demasiado en serio.',
-      emailPlaceholder: 'Ingresa tu correo',
-      joinWaitlist: 'Unirse a Lista de Espera',
-    },
-    footer: {
-      launchDate: 'Lanzamiento en Otoño 2023',
-      copyright: '© 2023 Bearly Hired. Todos los derechos reservados.',
-    },
+    // WelcomePage feature doesn't need its own translations since it just composes components
+    // All content is handled by individual reusable components
   },
   auth: {
     login: {
