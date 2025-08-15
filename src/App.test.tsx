@@ -64,7 +64,7 @@ describe('App', () => {
     render(<App />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i });
-    const submitButton = screen.getAllByRole('button', { name: 'Join Waitlist' })[2]; // Third one is EmailSignup submit button
+    const submitButton = screen.getByRole('form').querySelector('button[type="submit"]');
     
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);

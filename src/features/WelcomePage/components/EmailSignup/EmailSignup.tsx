@@ -3,15 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './EmailSignup.module.scss';
 
-export type EmailSignupProps = {
-  onSubmit: (email: string) => void;
-};
+export type EmailSignupProps = Record<string, never>;
 
 type FormData = {
   email: string;
 };
 
-export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
+export const EmailSignup = ({}: EmailSignupProps) => {
   const { t } = useTranslation('components', { keyPrefix: 'EmailSignup' });
   const { 
     register, 
@@ -25,7 +23,8 @@ export const EmailSignup = ({ onSubmit }: EmailSignupProps) => {
 
   const onFormSubmit = async (data: FormData) => {
     const trimmedEmail = data.email.trim();
-    await onSubmit(trimmedEmail);
+    console.log('Email submitted:', trimmedEmail);
+    alert('hahahha just joking there is not waitlist');
     reset();
   };
 

@@ -1,79 +1,88 @@
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { Hero, type HeroProps } from './Hero';
+import { Hero } from './Hero';
 
-const getMockHeroProps = (
-  overrides?: Partial<HeroProps>
-): HeroProps => ({
-  onJoinWaitlist: vi.fn(),
-  onLearnMore: vi.fn(),
-  ...overrides,
+// Mock alert and window.location
+const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
+Object.defineProperty(window, 'location', {
+  value: { href: '' },
+  writable: true,
 });
 
 describe('Hero', () => {
-  it('should render the main title', () => {
-    const props = getMockHeroProps();
-    render(<Hero {...props} />);
-    
-    expect(screen.getByText('title')).toBeInTheDocument();
+  beforeEach(() => {
+    alertSpy.mockClear();
+    window.location.href = '';
   });
 
-  it('should render the subtitle', () => {
-    const props = getMockHeroProps();
-    render(<Hero {...props} />);
+  afterAll(() => {
+    alertSpy.mockRestore();
+  });
+
+  it('should render the main title', () => {
+    render(<Hero />);
     
-    expect(screen.getByText('subtitle')).toBeInTheDocument();
+    expect(screen.getByText('Professional.')).toBeInTheDocument();
+    expect(screen.getByText('Bearly.')).toBeInTheDocument();
   });
 
   it('should render the description', () => {
-    const props = getMockHeroProps();
-    render(<Hero {...props} />);
+    render(<Hero />);
     
-    expect(screen.getByText('description')).toBeInTheDocument();
+    expect(screen.getByText(/A professional network for actual humans/)).toBeInTheDocument();
   });
 
-  it('should render Join the Waitlist button', () => {
-    const props = getMockHeroProps();
-    render(<Hero {...props} />);
+  it('should render both action buttons', () => {
+    render(<Hero />);
     
-    expect(screen.getByRole('button', { name: 'joinWaitlist' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Join the Waitlist' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Learn More' })).toBeInTheDocument();
   });
 
-  it('should render Learn More button', () => {
-    const props = getMockHeroProps();
-    render(<Hero {...props} />);
+  it('should render hero image with proper alt text', () => {
+    render(<Hero />);
     
-    expect(screen.getByRole('button', { name: 'learnMore' })).toBeInTheDocument();
+    const heroImage = screen.getByAltText('Bearly Hired mascot - a friendly bear representing professional networking');
+    expect(heroImage).toBeInTheDocument();
   });
 
-  it('should call onJoinWaitlist when Join the Waitlist button is clicked', async () => {
+  it('should call alert when join waitlist button is clicked', async () => {
     const user = userEvent.setup();
-    const mockOnJoinWaitlist = vi.fn();
-    const props = getMockHeroProps({ onJoinWaitlist: mockOnJoinWaitlist });
+    render(<Hero />);
     
-    render(<Hero {...props} />);
+    const joinButton = screen.getByRole('button', { name: 'Join the Waitlist' });
+    await user.click(joinButton);
     
-    await user.click(screen.getByRole('button', { name: 'joinWaitlist' }));
-    expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
+    expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
   });
 
-  it('should call onLearnMore when Learn More button is clicked', async () => {
+  it('should navigate to LinkedIn when learn more button is clicked', async () => {
     const user = userEvent.setup();
-    const mockOnLearnMore = vi.fn();
-    const props = getMockHeroProps({ onLearnMore: mockOnLearnMore });
+    render(<Hero />);
     
-    render(<Hero {...props} />);
+    const learnMoreButton = screen.getByRole('button', { name: 'Learn More' });
+    await user.click(learnMoreButton);
     
-    await user.click(screen.getByRole('button', { name: 'learnMore' }));
-    expect(mockOnLearnMore).toHaveBeenCalledTimes(1);
+    expect(window.location.href).toBe('https://www.linkedin.com/company/bearly-hired/');
   });
 
-  it('should have proper semantic structure with section element', () => {
-    const props = getMockHeroProps();
-    render(<Hero {...props} />);
+  it('should have proper semantic structure', () => {
+    render(<Hero />);
     
     const heroSection = screen.getByRole('region');
     expect(heroSection).toBeInTheDocument();
+    
+    const heading = screen.getByRole('heading', { level: 1 });
+    expect(heading).toBeInTheDocument();
+  });
+
+  it('should render with proper heading hierarchy', () => {
+    render(<Hero />);
+    
+    // Should have an h1 as the main title
+    const mainTitle = screen.getByRole('heading', { level: 1 });
+    expect(mainTitle).toBeInTheDocument();
+    expect(mainTitle).toHaveTextContent('Professional.Bearly.');
   });
 });

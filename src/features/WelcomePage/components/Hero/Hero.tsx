@@ -3,13 +3,18 @@ import heroImage from '@/assets/images/heroImage.png';
 
 import styles from './Hero.module.scss';
 
-export type HeroProps = {
-  onJoinWaitlist: () => void;
-  onLearnMore: () => void;
-};
+export type HeroProps = Record<string, never>;
 
-export const Hero = ({ onJoinWaitlist, onLearnMore }: HeroProps) => {
+export const Hero = ({}: HeroProps) => {
   const { t } = useTranslation('components', { keyPrefix: 'Hero' });
+
+  const handleJoinWaitlist = () => {
+    alert('hahahha just joking there is not waitlist');
+  };
+
+  const handleLearnMore = () => {
+    window.location.href = 'https://www.linkedin.com/company/bearly-hired/';
+  };
 
   return (
     <section className={styles.hero} role="region" aria-labelledby="hero-title">
@@ -30,14 +35,14 @@ export const Hero = ({ onJoinWaitlist, onLearnMore }: HeroProps) => {
             <div className={styles.heroButtons}>
               <button 
                 className={`${styles.heroButton} ${styles.primary}`}
-                onClick={onJoinWaitlist}
+                onClick={handleJoinWaitlist}
                 type="button"
               >
                 {t('Join Waitlist')}
               </button>
               <button 
                 className={`${styles.heroButton} ${styles.secondary}`}
-                onClick={onLearnMore}
+                onClick={handleLearnMore}
                 type="button"
               >
                 {t('Learn More')}

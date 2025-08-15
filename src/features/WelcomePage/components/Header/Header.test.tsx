@@ -1,48 +1,47 @@
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { Header, type HeaderProps } from './Header';
+import { Header } from './Header';
 
-const getMockHeaderProps = (
-  overrides?: Partial<HeaderProps>
-): HeaderProps => ({
-  onJoinWaitlist: vi.fn(),
-  ...overrides,
-});
+// Mock alert
+const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
 
 describe('Header', () => {
-  it('should render the logo image', () => {
-    const props = getMockHeaderProps();
-    render(<Header {...props} />);
-    
-    const logoImage = screen.getByRole('img', { name: 'logo' });
-    expect(logoImage).toBeInTheDocument();
-    expect(logoImage).toHaveAttribute('src', '/src/assets/images/logo.png');
+  beforeEach(() => {
+    alertSpy.mockClear();
   });
 
-  it('should render the Join Waitlist button', () => {
-    const props = getMockHeaderProps();
-    render(<Header {...props} />);
-    
-    expect(screen.getByRole('button', { name: 'joinWaitlist' })).toBeInTheDocument();
+  afterAll(() => {
+    alertSpy.mockRestore();
   });
 
-  it('should call onJoinWaitlist when Join Waitlist button is clicked', async () => {
+  it('should render the logo with proper alt text', () => {
+    render(<Header />);
+    
+    const logo = screen.getByAltText('Bearly Hired');
+    expect(logo).toBeInTheDocument();
+  });
+
+  it('should render the join waitlist button', () => {
+    render(<Header />);
+    
+    expect(screen.getByRole('button', { name: 'Join Waitlist' })).toBeInTheDocument();
+  });
+
+  it('should call alert when join waitlist button is clicked', async () => {
     const user = userEvent.setup();
-    const mockOnJoinWaitlist = vi.fn();
-    const props = getMockHeaderProps({ onJoinWaitlist: mockOnJoinWaitlist });
+    render(<Header />);
     
-    render(<Header {...props} />);
+    const joinButton = screen.getByRole('button', { name: 'Join Waitlist' });
+    await user.click(joinButton);
     
-    await user.click(screen.getByRole('button', { name: 'joinWaitlist' }));
-    expect(mockOnJoinWaitlist).toHaveBeenCalledTimes(1);
+    expect(alertSpy).toHaveBeenCalledWith('hahahha just joking there is not waitlist');
   });
 
-  it('should have proper semantic structure with header tag', () => {
-    const props = getMockHeaderProps();
-    render(<Header {...props} />);
+  it('should have proper semantic structure', () => {
+    render(<Header />);
     
-    const headerElement = screen.getByRole('banner');
-    expect(headerElement).toBeInTheDocument();
+    const header = screen.getByRole('banner');
+    expect(header).toBeInTheDocument();
   });
 });

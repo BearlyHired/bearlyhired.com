@@ -3,12 +3,14 @@ import logoImage from '@/assets/images/logo.png';
 
 import styles from './Header.module.scss';
 
-export type HeaderProps = {
-  onJoinWaitlist: () => void;
-};
+export type HeaderProps = Record<string, never>;
 
-export const Header = ({ onJoinWaitlist }: HeaderProps) => {
+export const Header = ({}: HeaderProps) => {
   const { t } = useTranslation('components', { keyPrefix: 'Header' });
+
+  const handleJoinWaitlist = () => {
+    alert('hahahha just joking there is not waitlist');
+  };
 
   return (
     <header className={styles.header}>
@@ -22,7 +24,7 @@ export const Header = ({ onJoinWaitlist }: HeaderProps) => {
         </div>
         <button 
           className={styles.joinWaitlistButton}
-          onClick={onJoinWaitlist}
+          onClick={handleJoinWaitlist}
           type="button"
         >
           {t('Join Waitlist')}
