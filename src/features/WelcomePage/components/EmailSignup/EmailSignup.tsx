@@ -9,7 +9,7 @@ type FormData = {
   email: string;
 };
 
-export const EmailSignup = ({}: EmailSignupProps) => {
+export const EmailSignup = () => {
   const { t } = useTranslation('components', { keyPrefix: 'EmailSignup' });
   const { 
     register, 

@@ -5,7 +5,7 @@ import styles from './Header.module.scss';
 
 export type HeaderProps = Record<string, never>;
 
-export const Header = ({}: HeaderProps) => {
+export const Header = () => {
   const { t } = useTranslation('components', { keyPrefix: 'Header' });
 
   const handleJoinWaitlist = () => {

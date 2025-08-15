@@ -5,7 +5,7 @@ import styles from './Hero.module.scss';
 
 export type HeroProps = Record<string, never>;
 
-export const Hero = ({}: HeroProps) => {
+export const Hero = () => {
   const { t } = useTranslation('components', { keyPrefix: 'Hero' });
 
   const handleJoinWaitlist = () => {
