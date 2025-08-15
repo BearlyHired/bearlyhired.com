@@ -19,6 +19,8 @@
 - Follow Red-Green-Refactor strictly
 - 100% behavior coverage required (not line coverage)
 - Test behavior through public APIs only
+- **RUN `npm run build` AFTER EVERY CHANGE** - verify TypeScript compilation and build process
+- Fix any TypeScript or build errors immediately before proceeding
 
 ### TypeScript Requirements
 ```json

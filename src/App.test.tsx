@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
 import App from './App';
@@ -64,7 +64,8 @@ describe('App', () => {
     render(<App />);
     
     const emailInput = screen.getByRole('textbox', { name: /email/i });
-    const submitButton = screen.getByRole('form').querySelector('button[type="submit"]');
+    const form = screen.getByRole('form');
+    const submitButton = within(form).getByRole('button', { name: 'Join Waitlist' });
     
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);
